@@ -33,4 +33,5 @@ public class seleccionMethod {
                 tEnd = System.nanoTime();
                 tTime = tEnd-tStart;
 		return datosOrdenados;
+    }
 }
