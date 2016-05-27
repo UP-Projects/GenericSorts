@@ -38,7 +38,7 @@ public class FXMLDocumentController implements Initializable {
     ArrayList<Float> flotantes=new ArrayList<Float>();
     ArrayList<Character> caracteres=new ArrayList<Character>();
     String position;
-    int finalPosition;
+    int finalPosition, finalPbs;
             
     @FXML    private Label label;
     
@@ -117,6 +117,7 @@ public class FXMLDocumentController implements Initializable {
         quickSortMethod quicksort = new quickSortMethod();
         seleccionMethod seleccion = new seleccionMethod();
         busquedaSecuencial busqueda= new busquedaSecuencial();
+        binarySearch binSearch = new binarySearch();
        
        
         if(comparar.equals("i")){ //Ordenacion de enteros
@@ -146,16 +147,28 @@ public class FXMLDocumentController implements Initializable {
             //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
             
             finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1;
-            if(finalPosition > 0){
+            finalPbs = binSearch.buscar(arrayQuicksort, Integer.parseInt(tfDato.getText()))+1;
+            if((finalPosition > 0) && (finalPbs > 0)){
                 position = Integer.toString(finalPosition);
             }else{
                 position = "No se encontro la busqueda";
             }
+            
+            //Busqueda Secuencial
             System.out.println("Busqueda secuencial "+busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
                     + "Posicion: "+ position +"\n "
                     + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
                     + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+            
+            //Busqueda Binaria
+            System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+""
+                    + " con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
+                    + "Posicion: "+ position +"\n "
+                    + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
+            
             txtDisplay.setText("");
             for (int i=0; i < enteros.size(); i++){
                 txtDisplay.appendText("\n["+(i+1)+"] : \t"+arrayQuicksort.get(i));
@@ -191,17 +204,28 @@ public class FXMLDocumentController implements Initializable {
             //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
             
             //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,Float.valueOf(tfDato.getText()))+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
-            finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Float.parseFloat(tfDato.getText()))+1;
             System.out.println("---Valor finalPosition: "+finalPosition);
-            if(finalPosition > 0){
+            finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Float.parseFloat(tfDato.getText()))+1;
+            finalPbs = binSearch.buscar(arrayQuicksort, Float.parseFloat(tfDato.getText()))+1;//binSearch.buscar(arrayQuicksort, Float.parseFloat(tfDato.getText()))+1;
+            if((finalPosition > 0) || (finalPbs > 0)){
                 position = Integer.toString(finalPosition);
             }else{
                 position = "No se encontro la busqueda";
             }
+            
+            //busqueda secuencial
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
                 + "Posicion: "+position+"\n "
                 + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
                 + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+            
+            //Busqueda Binaria
+            //System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
+                    + "Posicion: "+ position +"\n "
+                    + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
+            
             txtDisplay.setText("");
             for (int k=0; k < ordenarI.size(); k++){
                 txtDisplay.appendText("\n["+(k+1)+"] : \t"+arrayQuicksort.get(k));
@@ -239,16 +263,28 @@ public class FXMLDocumentController implements Initializable {
             char cadena[];
             cadena=dato.toCharArray();
             finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1;
-            if(finalPosition > 0){
+            finalPbs = binSearch.buscar(arrayQuicksort, cadena[0])+1;
+            if((finalPosition > 0) || (finalPbs > 0)){
                 position = Integer.toString(finalPosition);
             }else{
                 position = "No se encontro la busqueda";
             }
+            
+            //Busqueda secuencial
             //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
              taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
                     + "Posicion: "+finalPosition+"\n "
                     + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
                     + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+             
+             //Busqueda Binaria
+            //System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
+                    + "Posicion: "+ position +"\n "
+                    + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
+            
+            
             txtDisplay.setText("");
             for(int j=0; j < ordenarI.size(); j++){    
                 txtDisplay.appendText("\n["+(j+1)+"] : \t"+arrayQuicksort.get(j));
