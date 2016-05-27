@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Kevin
  */
-public class quickSortMethod {
+public class quickSortMethod<T> {
     long tStart,tEnd,tTime;
     int iteraciones=0;
     private ArrayList<T> array;    
