@@ -46,7 +46,8 @@ public class FXMLDocumentController implements Initializable {
         Stage stage1 = new Stage();
         FileChooser fc = new FileChooser();
         fc.setTitle("Abir archivo");
-        String ruta = "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\GenericMethods";
+        //String ruta = "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\GenericMethods";
+        String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Repositorios Remotos\\GenericSorts";
        // String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Programas\\Metodos-de-Ordenacion-y-Busqueda";
         fc.setInitialDirectory(new File(ruta));
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("TXT Files","*.txt");
@@ -62,10 +63,11 @@ public class FXMLDocumentController implements Initializable {
                 
                 datos.add(cadena.trim());
             }
+            txtDisplay.setText("Posicion | Valor");
             for (int i=0; i < datos.size(); i++){
                     //System.out.println(i);
-                    System.out.println("Arreglo en la posicion["+i+"]: " + datos.get(i));
-                    txtDisplay.appendText("\n"+(i+1)+".-"+datos.get(i));
+                    //System.out.println("Arreglo en la posicion["+i+"]: " + datos.get(i));
+                    txtDisplay.appendText("\n["+(i+1)+"] : \t"+datos.get(i));
             } 
             
 
@@ -115,96 +117,112 @@ public class FXMLDocumentController implements Initializable {
        busquedaSecuencial busqueda= new busquedaSecuencial();
        //Burbuja burbuja = new Burbuja();
        
-        if(comparar.equals("i")){
-            //ORDENAR ENTEROS
-                ArrayList<Integer> ordenarI = new ArrayList<Integer>(enteros);                
-//                ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
-//                System.out.println("insercion"+ arrayInsercion);
-//                System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
-                ArrayList<Integer> arrayQuicksort = new ArrayList<Integer>(quicksort.quickSort(ordenarI, 0, ordenarI.size()-1));
-                System.out.println("Quicksort"+arrayQuicksort);
-                taOutput.appendText("Quicksort\n"+arrayQuicksort);
-                taOutput.appendText("\nTiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);
-                System.out.println("Tiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);                
-                ArrayList<Integer> arraySeleccion = new ArrayList<Integer>(seleccion.selectionSort(ordenarI));
-                System.out.println("\nSeleccion\n"+arraySeleccion);
-                taOutput.appendText("\nSeleccion\n"+arraySeleccion);
-                taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);
-                System.out.println("Tiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);                
-//                ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-//                System.out.println("Burbuja"+arrayBurbuja);
-//                System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
-                System.out.println("Busqueda secuencial "+busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
-                taOutput.appendText("\nBusqueda secuencial posicion "+(busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
-                txtDisplay.setText("");
-                for (int i=0; i < enteros.size(); i++){
-                    txtDisplay.appendText("\n"+(i+1)+".-"+arrayQuicksort.get(i));
+        if(comparar.equals("i")){ //Ordenacion de enteros
+            ArrayList<Integer> ordenarI = new ArrayList<Integer>(enteros);                
+            //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
+            //System.out.println("insercion"+ arrayInsercion);
+            //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
+            ArrayList<Integer> arrayQuicksort = new ArrayList<Integer>(quicksort.quickSort(ordenarI, 0, ordenarI.size()-1));
+            System.out.println("Quicksort"+arrayQuicksort);
+            taOutput.appendText("\n = = = = = = = = = = = = = = = =\n Quicksort:\n"+arrayQuicksort);
+            taOutput.appendText("\nTiempo en nanosegundos: "+quicksort.tTime+ "\n Numero de iteraciones: "+quicksort.iteraciones+"\n");
+            System.out.println("Tiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);  
+            
+            ArrayList<Integer> arraySeleccion = new ArrayList<Integer>(seleccion.selectionSort(ordenarI));
+            System.out.println("\nSeleccion\n"+arraySeleccion);
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Seleccion:\n"+arraySeleccion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ "\n Numero de iteraciones: "+seleccion.iteraciones+"\n");
+            System.out.println("Tiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);                
+            
+            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
+            //System.out.println("Burbuja"+arrayBurbuja);
+            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            
+            System.out.println("Busqueda secuencial "+busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
+                    + "Posicion: "+(busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1)+"\n "
+                    + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+            txtDisplay.setText("");
+            for (int i=0; i < enteros.size(); i++){
+                txtDisplay.appendText("\n["+(i+1)+"] : \t"+arrayQuicksort.get(i));
             } 
+        }
         
-        }
-        if(comparar.equals("f")){
-            //ORDENAR FLOTANTES
-                ArrayList<Float> ordenarI = new ArrayList<Float>(flotantes);                
-//                ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
-//                System.out.println("insercion"+ arrayInsercion);
-//                System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
-                ArrayList<Float> arrayQuicksort = new ArrayList<Float>(quicksort.quickSort(ordenarI, 0, ordenarI.size()-1));
-                System.out.println("Quicksort"+arrayQuicksort);
-                taOutput.appendText("Quicksort\n"+arrayQuicksort);
-                taOutput.appendText("\nTiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);
-                System.out.println("Tiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);                
-                ArrayList<Float> arraySeleccion = new ArrayList<Float>(seleccion.selectionSort(ordenarI));
-                System.out.println("Seleccion"+arraySeleccion);
-                System.out.println("Tiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);
-                taOutput.appendText("\nSeleccion\n"+arraySeleccion);
-                taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);                
-//                ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-//                System.out.println("Burbuja"+arrayBurbuja);
-//                System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
-                 taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,Float.valueOf(tfDato.getText()))+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
-                 txtDisplay.setText("");
-                 for (int i=0; i < enteros.size(); i++){
-                    txtDisplay.appendText("\n"+(i+1)+".-"+arrayQuicksort.get(i));
+        if(comparar.equals("f")){ //Ordenacion de flotantes
+            ArrayList<Float> ordenarI = new ArrayList<Float>(flotantes);                
+            //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
+            //System.out.println("insercion"+ arrayInsercion);
+            //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);  
+            
+            ArrayList<Float> arrayQuicksort = new ArrayList<Float>(quicksort.quickSort(ordenarI, 0, ordenarI.size()-1));
+            System.out.println("Quicksort"+arrayQuicksort);
+            taOutput.appendText("\n = = = = = = = = = = = = = = = =\n Quicksort:\n"+arrayQuicksort);
+            taOutput.appendText("\nTiempo en nanosegundos: "+quicksort.tTime+ "\n Numero de iteraciones: "+quicksort.iteraciones+"\n");
+            System.out.println("Tiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);                
+            
+            ArrayList<Float> arraySeleccion = new ArrayList<Float>(seleccion.selectionSort(ordenarI));
+            System.out.println("Seleccion"+arraySeleccion);
+            System.out.println("Tiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Seleccion:\n"+arraySeleccion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ "\n Numero de iteraciones: "+seleccion.iteraciones+"\n");
+            
+            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
+            //System.out.println("Burbuja"+arrayBurbuja);
+            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            
+            //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,Float.valueOf(tfDato.getText()))+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
+                    + "Posicion: "+(busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1)+"\n "
+                    + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+            txtDisplay.setText("");
+            for (int i=0; i < enteros.size(); i++){
+                txtDisplay.appendText("\n["+(i+1)+"] : \t"+arrayQuicksort.get(i));
             } 
         }
-        if(comparar.equals("C")){
-            //ORDENAR CARACTERES
-                ArrayList<Character> ordenarI = new ArrayList<Character>(caracteres);                
-//                ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
-//                System.out.println("insercion"+ arrayInsercion);
-//                System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
-                ArrayList<Character> arrayQuicksort = new ArrayList<Character>(quicksort.quickSort(caracteres, 0, caracteres.size()-1));
-                System.out.println("Quicksort"+arrayQuicksort);
-                System.out.println("Tiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);   
-                taOutput.appendText("Quicksort\n"+arrayQuicksort);
-                taOutput.appendText("\nTiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);
-                ArrayList<Character> arraySeleccion = new ArrayList<Character>(seleccion.selectionSort(caracteres));
-                System.out.println("Seleccion"+arraySeleccion);
-                System.out.println("Tiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);  
-                taOutput.appendText("\nSeleccion\n"+arraySeleccion);
-                taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);  
-//                ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-//                System.out.println("Burbuja"+arrayBurbuja);
-//                System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
-
-                  String dato=tfDato.getText();
-                  char cadena[];
-                  cadena=dato.toCharArray();
-                  taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
-                  txtDisplay.setText("");
-                  for(int j=0; j < ordenarI.size(); j++){
-                      
-                    txtDisplay.appendText("\n"+(j+1)+".-"+arrayQuicksort.get(j));
-                } 
-                  
-                  
+        
+        if(comparar.equals("C")){ //Ordenacion caracteres
+            ArrayList<Character> ordenarI = new ArrayList<Character>(caracteres);                
+            //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
+            //System.out.println("insercion"+ arrayInsercion);
+            //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
+            
+            ArrayList<Character> arrayQuicksort = new ArrayList<Character>(quicksort.quickSort(caracteres, 0, caracteres.size()-1));
+            System.out.println("Quicksort"+arrayQuicksort);
+            System.out.println("Tiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);   
+            taOutput.appendText("\n = = = = = = = = = = = = = = = =\n Quicksort:\n"+arrayQuicksort);
+            taOutput.appendText("\nTiempo en nanosegundos: "+quicksort.tTime+ "\n Numero de iteraciones: "+quicksort.iteraciones+"\n");
+            
+            ArrayList<Character> arraySeleccion = new ArrayList<Character>(seleccion.selectionSort(caracteres));
+            System.out.println("Seleccion"+arraySeleccion);
+            System.out.println("Tiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);  
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Seleccion:\n"+arraySeleccion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ "\n Numero de iteraciones: "+seleccion.iteraciones+"\n");
+            
+            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
+            //System.out.println("Burbuja"+arrayBurbuja);
+            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            String dato=tfDato.getText();
+            char cadena[];
+            cadena=dato.toCharArray();
+            
+            //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
+             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
+                    + "Posicion: "+(busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1)+"\n "
+                    + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+            txtDisplay.setText("");
+            for(int j=0; j < ordenarI.size(); j++){    
+                txtDisplay.appendText("\n["+(j+1)+"] : \t"+arrayQuicksort.get(j));
+                //txtDisplay.appendText("\n"+(j+1)+".-"+arrayQuicksort.get(j));
+            }     
         }
-
     }    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }
