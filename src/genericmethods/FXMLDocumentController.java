@@ -118,11 +118,13 @@ public class FXMLDocumentController implements Initializable {
         seleccionMethod seleccion = new seleccionMethod();
         busquedaSecuencial busqueda= new busquedaSecuencial();
         binarySearch binSearch = new binarySearch();
+        bubbleSort bubble = new bubbleSort();
        
        
         if(comparar.equals("i")){ //Ordenacion de enteros
             ArrayList<Integer> ordenarI = new ArrayList<Integer>(enteros);
             ArrayList<Integer> orderI = new ArrayList<Integer>(enteros);
+            ArrayList<Integer> burbujaI = new ArrayList<Integer>(enteros);
             
             //QuickSort
             ArrayList<Integer> arrayQuicksort = new ArrayList<Integer>(quicksort.quickSort(ordenarI, 0, ordenarI.size()-1));
@@ -141,10 +143,10 @@ public class FXMLDocumentController implements Initializable {
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Inserción:\n"+arrayInsertion);
             taOutput.appendText("\nTiempo en nanosegundos: "+insertion.tTime+ "\n Numero de iteraciones: "+insertion.iteraciones+"\n");
             
-            
-            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-            //System.out.println("Burbuja"+arrayBurbuja);
-            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            //BubbleSort
+            ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(bubble.burbuja(burbujaI));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Burbuja:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+bubble.tTime+ "\n Numero de iteraciones: "+bubble.iteraciones+"\n");
             
             finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1;
             finalPbs = binSearch.buscar(arrayQuicksort, Integer.parseInt(tfDato.getText()))+1;
@@ -178,6 +180,7 @@ public class FXMLDocumentController implements Initializable {
         if(comparar.equals("f")){ //Ordenacion de flotantes
             ArrayList<Float> ordenarI = new ArrayList<Float>(flotantes);                
             ArrayList<Float> orderInsertion = new ArrayList<Float>(flotantes);
+            ArrayList<Float> orderB = new ArrayList<Float>(flotantes);
             //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
             //System.out.println("insercion"+ arrayInsercion);
             //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);  
@@ -199,9 +202,10 @@ public class FXMLDocumentController implements Initializable {
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Inserción:\n"+arrayInsertion);
             taOutput.appendText("\nTiempo en nanosegundos: "+insertion.tTime+ "\n Numero de iteraciones: "+insertion.iteraciones+"\n");
             
-            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-            //System.out.println("Burbuja"+arrayBurbuja);
-            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            //BubbleSort
+            ArrayList<Float> arrayBurbuja = new ArrayList<Float>(bubble.burbuja(orderB));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Burbuja:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+bubble.tTime+ "\n Numero de iteraciones: "+bubble.iteraciones+"\n");
             
             //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,Float.valueOf(tfDato.getText()))+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
             System.out.println("---Valor finalPosition: "+finalPosition);
@@ -235,6 +239,7 @@ public class FXMLDocumentController implements Initializable {
         if(comparar.equals("C")){ //Ordenacion caracteres
             ArrayList<Character> ordenarI = new ArrayList<Character>(caracteres);                
             ArrayList<Character> orderC = new ArrayList<Character>(caracteres);
+            ArrayList<Character> orderB = new ArrayList<Character>(caracteres);
             //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
             //System.out.println("insercion"+ arrayInsercion);
             //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
@@ -256,9 +261,11 @@ public class FXMLDocumentController implements Initializable {
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Inserción:\n"+arrayInsertion);
             taOutput.appendText("\nTiempo en nanosegundos: "+insertion.tTime+ "\n Numero de iteraciones: "+insertion.iteraciones+"\n");
             
-            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-            //System.out.println("Burbuja"+arrayBurbuja);
-            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            //BubbleSort
+            ArrayList<Character> arrayBurbuja = new ArrayList<Character>(bubble.burbuja(orderB));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Burbuja:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+bubble.tTime+ "\n Numero de iteraciones: "+bubble.iteraciones+"\n");
+            
             String dato=tfDato.getText();
             char cadena[];
             cadena=dato.toCharArray();
