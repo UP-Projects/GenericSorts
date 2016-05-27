@@ -37,12 +37,14 @@ public class FXMLDocumentController implements Initializable {
     ArrayList<Integer> enteros=new ArrayList<Integer>();
     ArrayList<Float> flotantes=new ArrayList<Float>();
     ArrayList<Character> caracteres=new ArrayList<Character>();
-    
-    @FXML
-    private Label label;
+    String position;
+    int finalPosition, finalPbs;
+            
+    @FXML    private Label label;
     
         @FXML   public void openFile(){
         txtDisplay.setText("");
+        comparar="";
         Stage stage1 = new Stage();
         FileChooser fc = new FileChooser();
         fc.setTitle("Abir archivo");
@@ -110,39 +112,66 @@ public class FXMLDocumentController implements Initializable {
         
    
     @FXML public void orderSorts(){
-        
-       //insertionSort insercion = new insertionSort();
-       quickSortMethod quicksort = new quickSortMethod();
-       seleccionMethod seleccion = new seleccionMethod();
-       busquedaSecuencial busqueda= new busquedaSecuencial();
-       //Burbuja burbuja = new Burbuja();
+        taOutput.setText("");
+        insertionSort insertion = new insertionSort();
+        quickSortMethod quicksort = new quickSortMethod();
+        seleccionMethod seleccion = new seleccionMethod();
+        busquedaSecuencial busqueda= new busquedaSecuencial();
+        binarySearch binSearch = new binarySearch();
+        bubbleSort bubble = new bubbleSort();
+       
        
         if(comparar.equals("i")){ //Ordenacion de enteros
-            ArrayList<Integer> ordenarI = new ArrayList<Integer>(enteros);                
-            //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
-            //System.out.println("insercion"+ arrayInsercion);
-            //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
+            ArrayList<Integer> ordenarI = new ArrayList<Integer>(enteros);
+            ArrayList<Integer> orderI = new ArrayList<Integer>(enteros);
+            ArrayList<Integer> burbujaI = new ArrayList<Integer>(enteros);
+            
+            //QuickSort
             ArrayList<Integer> arrayQuicksort = new ArrayList<Integer>(quicksort.quickSort(ordenarI, 0, ordenarI.size()-1));
-            System.out.println("Quicksort"+arrayQuicksort);
             taOutput.appendText("\n = = = = = = = = = = = = = = = =\n Quicksort:\n"+arrayQuicksort);
             taOutput.appendText("\nTiempo en nanosegundos: "+quicksort.tTime+ "\n Numero de iteraciones: "+quicksort.iteraciones+"\n");
-            System.out.println("Tiempo en nanosegundos: "+quicksort.tTime+ " e iteraciones: "+quicksort.iteraciones);  
             
+            
+            //SelectionSort
             ArrayList<Integer> arraySeleccion = new ArrayList<Integer>(seleccion.selectionSort(ordenarI));
-            System.out.println("\nSeleccion\n"+arraySeleccion);
-            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Seleccion:\n"+arraySeleccion);
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Selección:\n"+arraySeleccion);
             taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ "\n Numero de iteraciones: "+seleccion.iteraciones+"\n");
-            System.out.println("Tiempo en nanosegundos: "+seleccion.tTime+ " e iteraciones: "+seleccion.iteraciones);                
             
-            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-            //System.out.println("Burbuja"+arrayBurbuja);
-            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
             
+            //Insertion Sort
+            ArrayList<Integer> arrayInsertion = new ArrayList<Integer>(insertion.insertionSort(orderI));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Inserción:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+insertion.tTime+ "\n Numero de iteraciones: "+insertion.iteraciones+"\n");
+            
+            //BubbleSort
+            ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(bubble.burbuja(burbujaI));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Burbuja:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+bubble.tTime+ "\n Numero de iteraciones: "+bubble.iteraciones+"\n");
+            
+            finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1;
+            finalPbs = binSearch.buscar(arrayQuicksort, Integer.parseInt(tfDato.getText()))+1;
+            if((finalPosition > 0) && (finalPbs > 0)){
+                position = Integer.toString(finalPosition);
+            }else{
+                position = "No se encontro la busqueda";
+            }
+            
+            //Busqueda Secuencial
             System.out.println("Busqueda secuencial "+busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
+          
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
-                    + "Posicion: "+(busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1)+"\n "
+                    + "Posicion: "+ position +"\n "
                     + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
-                    + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+                    + "Iteraciones: "+(busqueda.iteraciones/2)+" iteraciones\n");
+            
+            //Busqueda Binaria
+            System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+""
+                    + " con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
+                    + "Posicion: "+ finalPbs +"\n "
+                    + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
+            
             txtDisplay.setText("");
             for (int i=0; i < enteros.size(); i++){
                 txtDisplay.appendText("\n["+(i+1)+"] : \t"+arrayQuicksort.get(i));
@@ -151,6 +180,8 @@ public class FXMLDocumentController implements Initializable {
         
         if(comparar.equals("f")){ //Ordenacion de flotantes
             ArrayList<Float> ordenarI = new ArrayList<Float>(flotantes);                
+            ArrayList<Float> orderInsertion = new ArrayList<Float>(flotantes);
+            ArrayList<Float> orderB = new ArrayList<Float>(flotantes);
             //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
             //System.out.println("insercion"+ arrayInsercion);
             //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);  
@@ -167,23 +198,49 @@ public class FXMLDocumentController implements Initializable {
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Seleccion:\n"+arraySeleccion);
             taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ "\n Numero de iteraciones: "+seleccion.iteraciones+"\n");
             
-            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-            //System.out.println("Burbuja"+arrayBurbuja);
-            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            //Insertion Sort
+            ArrayList<Float> arrayInsertion = new ArrayList<Float>(insertion.insertionSort(orderInsertion));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Inserción:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+insertion.tTime+ "\n Numero de iteraciones: "+insertion.iteraciones+"\n");
+            
+            //BubbleSort
+            ArrayList<Float> arrayBurbuja = new ArrayList<Float>(bubble.burbuja(orderB));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Burbuja:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+bubble.tTime+ "\n Numero de iteraciones: "+bubble.iteraciones+"\n");
             
             //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,Float.valueOf(tfDato.getText()))+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
+            System.out.println("---Valor finalPosition: "+finalPosition);
+            finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Float.parseFloat(tfDato.getText()))+1;
+            finalPbs = binSearch.buscar(arrayQuicksort, Float.parseFloat(tfDato.getText()))+1;//binSearch.buscar(arrayQuicksort, Float.parseFloat(tfDato.getText()))+1;
+            if((finalPosition > 0) || (finalPbs > 0)){
+                position = Integer.toString(finalPosition);
+            }else{
+                position = "No se encontro la busqueda";
+            }
+            
+            //busqueda secuencial
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
-                    + "Posicion: "+(busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1)+"\n "
-                    + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
-                    + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+                + "Posicion: "+position+"\n "
+                + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
+                + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+            
+            //Busqueda Binaria
+            //System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
+                    + "Posicion: "+ finalPbs +"\n "
+                    + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
+            
             txtDisplay.setText("");
-            for (int i=0; i < enteros.size(); i++){
-                txtDisplay.appendText("\n["+(i+1)+"] : \t"+arrayQuicksort.get(i));
+            for (int k=0; k < ordenarI.size(); k++){
+                txtDisplay.appendText("\n["+(k+1)+"] : \t"+arrayQuicksort.get(k));
             } 
         }
         
         if(comparar.equals("C")){ //Ordenacion caracteres
             ArrayList<Character> ordenarI = new ArrayList<Character>(caracteres);                
+            ArrayList<Character> orderC = new ArrayList<Character>(caracteres);
+            ArrayList<Character> orderB = new ArrayList<Character>(caracteres);
             //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
             //System.out.println("insercion"+ arrayInsercion);
             //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
@@ -200,18 +257,42 @@ public class FXMLDocumentController implements Initializable {
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Seleccion:\n"+arraySeleccion);
             taOutput.appendText("\nTiempo en nanosegundos: "+seleccion.tTime+ "\n Numero de iteraciones: "+seleccion.iteraciones+"\n");
             
-            //ArrayList<Integer> arrayBurbuja = new ArrayList<Integer>(burbuja.burbuja(ordenarI));
-            //System.out.println("Burbuja"+arrayBurbuja);
-            //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
+            //Insertion Sort
+            ArrayList<Character> arrayInsertion = new ArrayList<Character>(insertion.insertionSort(orderC));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Inserción:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+insertion.tTime+ "\n Numero de iteraciones: "+insertion.iteraciones+"\n");
+            
+            //BubbleSort
+            ArrayList<Character> arrayBurbuja = new ArrayList<Character>(bubble.burbuja(orderB));
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Burbuja:\n"+arrayInsertion);
+            taOutput.appendText("\nTiempo en nanosegundos: "+bubble.tTime+ "\n Numero de iteraciones: "+bubble.iteraciones+"\n");
+            
             String dato=tfDato.getText();
             char cadena[];
             cadena=dato.toCharArray();
+            finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1;
+            finalPbs = binSearch.buscar(arrayQuicksort, cadena[0])+1;
+            if((finalPosition > 0) || (finalPbs > 0)){
+                position = Integer.toString(finalPosition);
+            }else{
+                position = "No se encontro la busqueda";
+            }
             
+            //Busqueda secuencial
             //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
              taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
-                    + "Posicion: "+(busqueda.busquedaSecuencial(arrayQuicksort,cadena[0])+1)+"\n "
+                    + "Posicion: "+finalPosition+"\n "
                     + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
                     + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+             
+             //Busqueda Binaria
+            //System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
+            taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
+                    + "Posicion: "+ finalPbs +"\n "
+                    + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
+                    + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
+            
+            
             txtDisplay.setText("");
             for(int j=0; j < ordenarI.size(); j++){    
                 txtDisplay.appendText("\n["+(j+1)+"] : \t"+arrayQuicksort.get(j));
