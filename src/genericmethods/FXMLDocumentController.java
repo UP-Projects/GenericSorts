@@ -158,16 +158,17 @@ public class FXMLDocumentController implements Initializable {
             
             //Busqueda Secuencial
             System.out.println("Busqueda secuencial "+busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
+          
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
                     + "Posicion: "+ position +"\n "
                     + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
-                    + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
+                    + "Iteraciones: "+(busqueda.iteraciones/2)+" iteraciones\n");
             
             //Busqueda Binaria
             System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+""
                     + " con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
-                    + "Posicion: "+ position +"\n "
+                    + "Posicion: "+ finalPbs +"\n "
                     + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
                     + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
             
@@ -226,7 +227,7 @@ public class FXMLDocumentController implements Initializable {
             //Busqueda Binaria
             //System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
-                    + "Posicion: "+ position +"\n "
+                    + "Posicion: "+ finalPbs +"\n "
                     + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
                     + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
             
@@ -287,7 +288,7 @@ public class FXMLDocumentController implements Initializable {
              //Busqueda Binaria
             //System.out.println("Busqueda binaria "+binSearch.buscar(arrayQuicksort,Integer.parseInt(tfDato.getText()))+" con un tiempo de: "+binSearch.tTime+ " nanosegundos y "+binSearch.iteraciones+" iteraciones");
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda Binaria:\n "
-                    + "Posicion: "+ position +"\n "
+                    + "Posicion: "+ finalPbs +"\n "
                     + "Tiempo: "+binSearch.tTime+ " nanosegundos \n"
                     + "Iteraciones: "+ binSearch.iteraciones+" iteraciones\n");
             

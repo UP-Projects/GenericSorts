@@ -61,6 +61,7 @@ public class busquedaSecuencial {
                 break;//Para el ciclo 
             } 
         } 
+        
         tEnd = System.nanoTime();
         tTime = tEnd-tStart;
         return posicion; 
