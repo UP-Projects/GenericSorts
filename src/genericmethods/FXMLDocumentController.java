@@ -193,19 +193,21 @@ public class FXMLDocumentController implements Initializable {
             //System.out.println("Tiempo en nanosegundos: "+burbuja.tiempo+" e iteraciones: "+burbuja.iteraciones);
             
             //taOutput.appendText("\nBusqueda secuencial posicion"+(busqueda.busquedaSecuencial(arrayQuicksort,Float.valueOf(tfDato.getText()))+1)+" con un tiempo de: "+busqueda.tTime+ " nanosegundos y "+busqueda.iteraciones+" iteraciones");
-            finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Integer.parseInt(tfDato.getText()))+1;
+            finalPosition = busqueda.busquedaSecuencial(arrayQuicksort,Float.parseFloat(tfDato.getText()))+1;
+            System.out.println("---Valor finalPosition: "+finalPosition);
             if(finalPosition > 0){
                 position = Integer.toString(finalPosition);
             }else{
                 position = "No se encontro la busqueda";
             }
             taOutput.appendText("\n  = = = = = = = = = = = = = = = =\n Busqueda secuencial:\n "
-                + "Posicion: "+finalPosition+"\n "
+                + "Posicion: "+position+"\n "
                 + "Tiempo: "+busqueda.tTime+ " nanosegundos \n"
                 + "Iteraciones: "+busqueda.iteraciones+" iteraciones\n");
             txtDisplay.setText("");
-            for (int i=0; i < enteros.size(); i++){
-                txtDisplay.appendText("\n["+(i+1)+"] : \t"+arrayQuicksort.get(i));
+            for (int k=0; k < ordenarI.size(); k++){
+                System.out.println("---Entra al for");
+                txtDisplay.appendText("\n["+(k+1)+"] : \t"+arrayQuicksort.get(k));
             } 
         }
         
