@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="438.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genericmethods.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="355.0" prefWidth="579.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="genericmethods.FXMLDocumentController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="579.0">
         <menus>
@@ -25,12 +25,12 @@
       </MenuBar>
       <TextArea fx:id="txtDisplay" editable="false" layoutX="21.0" layoutY="44.0" prefHeight="264.0" prefWidth="111.0" />
       <Label fx:id="labelSegundos" layoutX="14.0" layoutY="318.0" prefHeight="17.0" prefWidth="256.0" />
-      <Pane fx:id="paneBusqueda" layoutX="17.0" layoutY="335.0" prefHeight="94.0" prefWidth="246.0">
+      <Pane fx:id="paneBusqueda" layoutX="17.0" layoutY="335.0" prefHeight="53.0" prefWidth="543.0">
          <children>
-            <Label layoutX="9.0" layoutY="18.0" text="Buscar:" />
-            <TextField fx:id="tfDato" layoutX="51.0" layoutY="14.0" prefHeight="25.0" prefWidth="47.0" />
-            <Label fx:id="labelOutput" layoutX="10.0" layoutY="45.0" prefHeight="37.0" prefWidth="227.0" />
-            <Button layoutX="2.0" layoutY="64.0" mnemonicParsing="false" onAction="#orderSorts" text="Start" />
+            <Label layoutX="9.0" layoutY="18.0" text="Número:" />
+            <TextField fx:id="tfDato" layoutX="58.0" layoutY="14.0" prefHeight="25.0" prefWidth="66.0" />
+            <Label fx:id="labelOutput" layoutX="196.0" layoutY="8.0" prefHeight="37.0" prefWidth="227.0" />
+            <Button layoutX="133.0" layoutY="14.0" mnemonicParsing="false" onAction="#orderSorts" text="Buscar" />
          </children>
       </Pane>
       <TextArea fx:id="taOutput" layoutX="141.0" layoutY="42.0" prefHeight="264.0" prefWidth="419.0" />
