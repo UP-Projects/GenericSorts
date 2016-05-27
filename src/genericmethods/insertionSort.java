@@ -17,19 +17,26 @@ public class insertionSort {
     
     public <T extends Comparable<T>> ArrayList<T> insertionSort(ArrayList<T> array){
         tStart = System.nanoTime();
-        T aux;
-        for(int i=1; i<array.size(); i++){        
-            aux = array.get(i);
+        ArrayList<T> datosInsertion;
+        datosInsertion = new ArrayList<T>(array);
+        T temp;
+        System.out.println("Datos insertion: "+datosInsertion);
+        for(int i=1; i<datosInsertion.size(); i++){        
+            temp = datosInsertion.get(i);
             int j = i-1;
-            //for(int j=i-1; j>=0 && array.get(j).compareTo(aux) > 0; j--){
-            while ((array.get(j).compareTo(aux) > 0) && (j >= 0)){
-            iteraciones++;
-            array.set(j+1, array.get(j));
-            array.set(j, aux);
+                       
+            //for(int j = i-1; j>=0 && datosInsertion.get(j).compareTo(temp) > 0; j--){
+            while ( (j >= 0) &&(datosInsertion.get(j).compareTo(temp) > 0) ){
+                iteraciones++;
+                datosInsertion.set(j+1, datosInsertion.get(j));
+                datosInsertion.set(j, temp);
+                j--;
+            }
         }
+        System.out.println("-------------iteraciones: "+iteraciones);
+        System.out.println("::Datos insertion al salir: "+datosInsertion);
+        tTime = System.nanoTime() - tStart;
+        return array;
     }
-    tTime = System.nanoTime() - tStart;
-    return array;
-  }
     
 }
