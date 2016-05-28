@@ -48,8 +48,8 @@ public class FXMLDocumentController implements Initializable {
         Stage stage1 = new Stage();
         FileChooser fc = new FileChooser();
         fc.setTitle("Abir archivo");
-        //String ruta = "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\GenericMethods";
-        String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Repositorios Remotos\\GenericSorts";
+        String ruta = "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\GenericMethods";
+        //String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Repositorios Remotos\\GenericSorts";
        // String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Programas\\Metodos-de-Ordenacion-y-Busqueda";
         fc.setInitialDirectory(new File(ruta));
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("TXT Files","*.txt");

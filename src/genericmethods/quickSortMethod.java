@@ -24,35 +24,42 @@ public class quickSortMethod<T> {
         int inicio = divide(array, left, right); //RECOLECTAMOS EL VALOR ACTUAL       
         if (left < inicio - 1)//COMPARAMOS UNA POSICION ATRAS
             quickSort(array, left, inicio - 1);
-        
+        //COMPARAMOS EL VALOR DERECHO
         if (inicio < right)
             quickSort(array, inicio, right);
-        
+        //CALCULAMOS EL TIEMPO
         tEnd = System.nanoTime();
         tTime = tEnd-tStart;
+        //DEVOLVEMOS EL ARREGLO ORDENADO
         return array;
     }
     
     public <T extends Comparable<T>> int divide(ArrayList<T> array, int left, int right) {
-        
+        //ASIGNAMOS LOS VALORES RECIBIDOS
         int l = left, r = right;
         T aux; T pivote = array.get(left);     
+        //SE COMPARA LOS PIVOTES
         while (l <= r) {
             while (array.get(l).compareTo(pivote) < 0)
+                //SE RECORRE LA POSICION
                 l++;
             
             while (array.get(r).compareTo(pivote) > 0)
                 r--;
             
             if (l <= r) {
+                //ITERRACIONES
                 iteraciones++;
+                //SE CAMBIAN LOS VALORES
                 aux = array.get(l);
                 array.set(l, array.get(r));
                 array.set(r, aux);
+                //SE ACTUALIZAN LOS CONTADORES
                 l++;
                 r--;
             }         
         };     
+        //RETORNAMOS EL PIVOTE L
         return l;        
     }    
 }

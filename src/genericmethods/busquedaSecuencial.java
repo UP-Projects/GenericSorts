@@ -16,15 +16,18 @@ public class busquedaSecuencial {
     int iteraciones=0;
   
     public int busquedaSecuencial(ArrayList<Integer> arreglo,int dato){
-        tStart = System.nanoTime(); //de ejecución
+        //INICIA EL CONTEO DEL TIEMPO
+        tStart = System.nanoTime(); 
         int posicion = -1;
+        //SE RECORRE TODO EL ARREGLA
         for(int i = 0; i < arreglo.size(); i++){
-            //recorremos todo el arreglo 
+            
             iteraciones++;
             int aux = arreglo.get(i);
-            if(aux == dato){//comparamos el elemento en el arreglo con el buscado 
-                posicion = i;//Si es verdadero guardamos la posicion 
-                break;//Para el ciclo 
+            if(aux == dato){//SE COMPARA TODO EL ARREGLO
+                posicion = i;//POSICION DEL ELEMENTO
+                break;
+                //STOP CICLO
             } 
         } 
         tEnd = System.nanoTime();
@@ -32,16 +35,18 @@ public class busquedaSecuencial {
         return posicion; 
     } 
     public int busquedaSecuencial(ArrayList<Float> arreglo,float dato){
-        tStart = System.nanoTime(); //de ejecución
+        tStart = System.nanoTime(); //INICIA EL CONTEO DEL TIEMPO
         int posicion = -1;
         for(int i = 0; i < arreglo.size(); i++){
-            //recorremos todo el arreglo 
+            //S RECORRE EL ARREGLO
             iteraciones++;
-            //Dani lo tiene igual y le agarrar así 
+            
             float aux = arreglo.get(i);
-            if(aux == dato){//comparamos el elemento en el arreglo con el buscado 
-                posicion = i;//Si es verdadero guardamos la posicion 
-                break;//Para el ciclo 
+            //SE COMPARA CADA ELEMENTO
+            if(aux == dato){
+//                SE GUARDA LA POSICION
+                posicion = i;
+                break;//TERMINA EL CICLO
             } 
         } 
         tEnd = System.nanoTime();
@@ -49,21 +54,25 @@ public class busquedaSecuencial {
         return posicion; 
     }
     public int busquedaSecuencial(ArrayList<Character> arreglo,char dato){
-        tStart = System.nanoTime(); //de ejecución
+        //INICIA EL CONTEO
+        tStart = System.nanoTime(); 
         int posicion = -1;
+        //SE RECORRE EL ARREGLO
         for(int i = 0; i < arreglo.size(); i++){
-            //recorremos todo el arreglo 
             iteraciones++;
-            //Dani lo tiene igual y le agarrar así 
             char aux = arreglo.get(i);
-            if(aux == dato){//comparamos el elemento en el arreglo con el buscado 
-                posicion = i;//Si es verdadero guardamos la posicion 
-                break;//Para el ciclo 
+            //SE COMPARAN LOS DATOS
+            if(aux == dato){
+                //SE GUARDA EL POSICION
+                posicion = i;
+                break;
+                //TERMINA EL CICLO
             } 
         } 
-        
+        //SE GUARDAN LOS TIEMPOS
         tEnd = System.nanoTime();
         tTime = tEnd-tStart;
+        //DEVOLVEMOS LA POSICION
         return posicion; 
     }
 }
