@@ -42,15 +42,16 @@ public class FXMLDocumentController implements Initializable {
             
     @FXML    private Label label;
     
+        //Metodo para abrir los dataset
         @FXML   public void openFile(){
         txtDisplay.setText("");
         comparar="";
         Stage stage1 = new Stage();
         FileChooser fc = new FileChooser();
         fc.setTitle("Abir archivo");
-        String ruta = "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\GenericMethods";
-        //String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Repositorios Remotos\\GenericSorts";
-       // String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Programas\\Metodos-de-Ordenacion-y-Busqueda";
+        //String ruta = "C:\\Users\\Kevin\\Documents\\NetBeansProjects\\GenericMethods";
+        String ruta = "C:\\Users\\Arreola\\Google Drive\\Drive\\Politécnica\\C6\\Estructuras de Datos Avanzadas\\Repositorios Remotos\\GenericSorts";
+       
         fc.setInitialDirectory(new File(ruta));
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("TXT Files","*.txt");
         fc.getExtensionFilters().add(extensionFilter);
@@ -81,7 +82,7 @@ public class FXMLDocumentController implements Initializable {
     }
         
         
-        @FXML public void filtrarDato(){
+        @FXML public void filtrarDato(){ //Metodo para filtar el tipo de dato del dataset
         comparar = datos.get(0);
         System.out.println("Tipo de Dato: "+comparar);
         
@@ -111,8 +112,10 @@ public class FXMLDocumentController implements Initializable {
     }
         
    
-    @FXML public void orderSorts(){
+    @FXML public void orderSorts(){ //Metodo general donde se mandan a llamar las clases de ordenacion y busqueda
         taOutput.setText("");
+        
+        //Instancias
         insertionSort insertion = new insertionSort();
         quickSortMethod quicksort = new quickSortMethod();
         seleccionMethod seleccion = new seleccionMethod();
@@ -179,12 +182,10 @@ public class FXMLDocumentController implements Initializable {
         }
         
         if(comparar.equals("f")){ //Ordenacion de flotantes
+            //Se crean arraylist a utilizar
             ArrayList<Float> ordenarI = new ArrayList<Float>(flotantes);                
             ArrayList<Float> orderInsertion = new ArrayList<Float>(flotantes);
-            ArrayList<Float> orderB = new ArrayList<Float>(flotantes);
-            //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
-            //System.out.println("insercion"+ arrayInsercion);
-            //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);  
+            ArrayList<Float> orderB = new ArrayList<Float>(flotantes); 
             
             ArrayList<Float> arrayQuicksort = new ArrayList<Float>(quicksort.quickSort(ordenarI, 0, ordenarI.size()-1));
             System.out.println("Quicksort"+arrayQuicksort);
@@ -238,12 +239,10 @@ public class FXMLDocumentController implements Initializable {
         }
         
         if(comparar.equals("C")){ //Ordenacion caracteres
+            //Se crean arraylist a utilizar
             ArrayList<Character> ordenarI = new ArrayList<Character>(caracteres);                
             ArrayList<Character> orderC = new ArrayList<Character>(caracteres);
-            ArrayList<Character> orderB = new ArrayList<Character>(caracteres);
-            //ArrayList<Integer> arrayInsercion = new ArrayList<Integer>(insercion.ordenar(ordenarI));
-            //System.out.println("insercion"+ arrayInsercion);
-            //System.out.println("Tiempo en nanosegundos: "+insercion.tiempo+ " e iteraciones: "+insercion.iteraciones);                
+            ArrayList<Character> orderB = new ArrayList<Character>(caracteres);               
             
             ArrayList<Character> arrayQuicksort = new ArrayList<Character>(quicksort.quickSort(caracteres, 0, caracteres.size()-1));
             System.out.println("Quicksort"+arrayQuicksort);
